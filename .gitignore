@@ -6,3 +6,6 @@ __pycache__/
 
 CLAUDE.md
 .claude/
+
+examples/output/*.png
+examples/output/*.html

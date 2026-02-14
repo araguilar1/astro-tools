@@ -527,6 +527,13 @@ def lagrangePointEigendecomp(ndx, mu):
     return eigVal, eigVec
 
 
+def printCorrectorStatus(iteration, Fnorm, dx, label=""):
+    """Prints iteration info for differential corrector solvers (solveLyapunov, solveHalo)."""
+    header = f"[{label}] " if label else ""
+    dx_str = ", ".join(f"{v: .6e}" for v in dx)
+    print(f"  {header}Iter {iteration:3d}  |F| = {Fnorm:.6e}  dx = [{dx_str}]")
+
+
 def lyapunovConstraints(ndx):
     x0 = np.copy(ndx)
     # y = xDot = 0.0
@@ -545,6 +552,7 @@ def solveLyapunov(ndx, t, mu=0.0121, tol=1e-12, direction=1):
     x0 = xF.y[:,0]
     F = lyapunovConstraints(xF.y[:, -1])
     Fnorm = np.linalg.norm(F)
+    iteration = 0
     while Fnorm>tol:
         x = xF.y[0, -1]
         y = xF.y[1, -1]
@@ -561,6 +569,9 @@ def solveLyapunov(ndx, t, mu=0.0121, tol=1e-12, direction=1):
         DF = np.array([[phi[1,4], yDot],
                              [phi[3,4], xDotDot]])
         dx = np.linalg.inv(DF).dot(F)
+
+        iteration += 1
+        printCorrectorStatus(iteration, Fnorm, dx, label="Lyapunov")
 
         x0[4] -= dx[0]
         t0    -= dx[1]
@@ -612,6 +623,7 @@ def solveHalo(ndx, t,  mu=0.0121, direction=-1):
     x0 = xF.y[:,0]
     F = haloConstraints(xF.y[:, -1])
     Fnorm = np.linalg.norm(F)
+    iteration = 0
     while Fnorm>1e-12:
         x = xF.y[0, -1]
         y = xF.y[1, -1]
@@ -632,6 +644,9 @@ def solveHalo(ndx, t,  mu=0.0121, direction=-1):
             [phi[5,0], phi[5,4], zDotDot]])
 
         dx = np.linalg.inv(DF) @ F
+
+        iteration += 1
+        printCorrectorStatus(iteration, Fnorm, dx, label="Halo")
 
         x0[0] -= dx[0]
         x0[4] -= dx[1]
