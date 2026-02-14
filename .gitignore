@@ -8,5 +8,3 @@ __pycache__/
 
 examples/output/*.png
 examples/output/*.html
-
-*copilot-instructions.md
