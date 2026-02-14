@@ -2,7 +2,7 @@
 
 Astrodynamics library for the Circular Restricted Three-Body Problem (CR3BP) and related orbital mechanics models.
 
-**Author:** Abram Aguilar (NASA Johnson Space Center)
+**Author:** Abram Aguilar
 
 ## Overview
 
@@ -15,7 +15,7 @@ Astro Tools provides a comprehensive suite of numerical methods and models for:
 - **Multi-body dynamics** (CR3BP extensions including solar perturbations)
 
 This library offers a **dual-language implementation**:
-- **Python** (primary): Full-featured implementation with integration to NASA's ASSET optimal control library
+- **Python** (primary): Full-featured implementation with integration to the ASSET optimal control library
 - **Julia** (secondary): Standalone module (`Astro.jl`) for high-performance differential equation solving
 
 ## Key Features
@@ -35,7 +35,7 @@ This library offers a **dual-language implementation**:
 
 - **Stable/Unstable Manifold Analysis**: Compute invariant manifolds along periodic orbits for designing low-energy transfers and understanding transport dynamics
 
-- **Optimal Control Integration**: Seamless integration with NASA's ASSET (Astrogator Software for Exploring Trajectories) library for trajectory optimization problems
+- **Optimal Control Integration**: Seamless integration with the ASSET (Astrodynamics Software and Science Enabling Toolkit) library for trajectory optimization problems
 
 - **Finite-Time Lyapunov Exponent (FTLE) Analysis**: Identify Lagrangian Coherent Structures (LCS) that govern transport in phase space
 
@@ -127,9 +127,9 @@ data/                 # Pickle orbit files, periodicLagrangeOrbits.csv
 - requests
 
 **Optimal control (required for Models/ and CR3BP_Utils/):**
-- asset_asrl (NASA ASSET library)
+- asset_asrl
 
-**Note:** The core module `astro.py` does NOT depend on ASSET and uses scipy directly for integration and root-finding.
+**Note:** The module `astro.py` does NOT depend on ASSET and uses scipy directly for integration and root-finding.
 
 ### Julia Dependencies (for Astro.jl)
 
@@ -458,7 +458,7 @@ This library includes working example scripts that demonstrate key capabilities:
 
 **Python:** `examples/Solve_NRHOs_CR3BP.py`
 
-Solves two lunar NRHOs (9:2 and 4:1 L2 Southern families) using ASSET-based periodic orbit solver. Initial conditions are taken from Dr. Emily Spreen's PhD dissertation. The script:
+Solves two Earth-Moon NRHOs (9:2 and 4:1 L2 Southern) using ASSET-based periodic orbit solver. Initial conditions are taken from Dr. Emily Zimovan-Spreen's PhD dissertation. The script:
 1. Defines the Earth-Moon CR3BP system
 2. Sets up initial guesses from literature
 3. Applies differential correction with ASSET optimizer
@@ -501,6 +501,6 @@ The `CLAUDE.md` file serves as the detailed technical reference, while this READ
 
 **Note:** Some code in this repository may be AI-generated. This repository serves as an educational resource for learning how to work with coding agents for astrodynamics research and development.
 
-**Original Author:** Abram Aguilar (NASA Johnson Space Center)
+**Original Author:** Abram Aguilar
 
 **Purpose:** This repository is intended for learning, research, and educational purposes. Users should validate results independently for production applications or mission-critical systems.
