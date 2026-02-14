@@ -9,3 +9,5 @@ CLAUDE.md
 
 examples/output/*.png
 examples/output/*.html
+
+*copilot-instructions.md
