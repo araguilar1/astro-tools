@@ -196,7 +196,10 @@ def characteristicQuantities(P1, P2):
     mu = m2 / m_star
     lstar = P2.orbit_semi_major_axis()
     tstar = np.sqrt(lstar ** 3 / (G/1000**3) / m_star)
-    return [mu, lstar, tstar]
+    cq = {"mu": mu,
+          "lstar": lstar,
+          "tstar": tstar}
+    return cq
 
 
 def cr3bpOde(ndx, t, mu):

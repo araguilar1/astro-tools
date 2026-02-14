@@ -10,23 +10,27 @@ TRAJECTORY DESIGN AND TARGETING FOR APPLICATIONS TO THE EXPLORATION PROGRAM IN C
 
 """
 
+import sys
+import pathlib
+sys.path.append(str(pathlib.Path(__file__).parents[1].absolute()))
+
 import numpy as np
-from asset_asrl.Astro.AstroModels import CR3BP
-import asset_asrl.Astro.Constants as c
 from prettytable import PrettyTable
 
-# Add utils to path
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parents[1].absolute()))
-
+from Models.CR3BP import CR3BP
 from CR3BP_Utils.solve_periodic_orbit import solvePeriodic
 from data_utils import writeDataToPkl
-from astro import jacobi
+from astro import jacobi, CelestialObject, characteristicQuantities
 from general_utils import EARTH_MOON_CR3BP_DAY
 
 ########### Define CR3BP ODE ###########
-ode = CR3BP(c.MuEarth, c.MuMoon, c.LD)
+earth = CelestialObject("Earth")
+moon = CelestialObject("Moon")
+characteristic_quantities = characteristicQuantities(earth, moon)
+mu, lstar, tstar = characteristic_quantities["mu"], characteristic_quantities["lstar"], characteristic_quantities["tstar"]
+
+ode = CR3BP(mu, lstar, tstar)
+
 
 ########### Create Initial Guesses ###########
 # 9:2 L2 Southern NRHO
