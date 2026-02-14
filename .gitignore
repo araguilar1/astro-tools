@@ -4,7 +4,6 @@ __pycache__/
 # Ignore .vscode folder
 .vscode/*
 
-CLAUDE.md
 .claude/
 
 examples/output/*.png
