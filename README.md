@@ -170,7 +170,6 @@ The **mass ratio** μ defines the three-body system:
 where:
 - m₁ = mass of the primary body (larger mass)
 - m₂ = mass of the secondary body (smaller mass)
-- μ is always between 0 and 0.5
 
 For the Earth-Moon system: μ ≈ 0.01215
 
