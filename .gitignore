@@ -8,3 +8,9 @@ __pycache__/
 
 examples/output/*.png
 examples/output/*.html
+
+# Python virtual environments
+venv/
+env/
+.venv/
+.env/
